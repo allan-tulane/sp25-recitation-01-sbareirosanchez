@@ -38,13 +38,15 @@ We'll compare the running times of `linear_search` and `binary_search` empirical
 
 - [ ] 3. Write at least two additional test cases in `test_binary_search` and confirm they pass.
 
-- [ ] 4. Describe the worst case input value of `key` for `linear_search`? for `binary_search`? 
+- [ ] 4. Describe the worst case input value of `key` for `linear_search`? for `binary_search`?
 
-**TODO: your answer goes here**
+**Linear Search: The worst case that can occur is when the key is not found in the list or is at the last position. Time complexity : O(n).
+Binary Search: The worst case that can occur is when the key is not in the list, leading to the maximum number of recursive calls. Time complexity : O(log₂(n)).**
 
 - [ ] 5. Describe the best case input value of `key` for `linear_search`? for `binary_search`? 
 
-**TODO: your answer goes here**
+**Linear Search: The best case that can occur is when the key is found at the first index. Time complexity: O(1).
+Binary Search: The best case that can occur is when the key is at the middle index in the first step. Time complexity: O(1).**
 
 - [ ] 6. Complete the `time_search` function to compute the running time of a search function. Note that this is an example of a "higher order" function, since one of its parameters is another function.
 
@@ -52,11 +54,21 @@ We'll compare the running times of `linear_search` and `binary_search` empirical
 
 - [ ] 8. Call `print_results(compare_search())` and paste the results here:
 
-**TODO: add your timing results here**
+|            n |   linear |   binary |
+|--------------|----------|----------|
+|       10.000 |    0.003 |    0.004 |
+|      100.000 |    0.010 |    0.002 |
+|     1000.000 |    0.067 |    0.004 |
+|    10000.000 |    0.653 |    0.005 |
+|   100000.000 |    5.490 |    0.008 |
+|  1000000.000 |   51.464 |    0.014 |
+| 10000000.000 |  535.212 |    0.017 |
 
 - [ ] 9. The theoretical worst-case running time of linear search is $O(n)$ and binary search is $O(log_2(n))$. Do these theoretical running times match your empirical results? Why or why not?
 
-**TODO: your answer goes here**
+**Yes, the empirical results align with theoretical expectations: 
+Linear Search: Shows an increasing time compexity approximately proportional to O(n). 
+Binary Search: Grows much slower, confirming its O(log₂(n)) complexity.**
 
 - [ ] 10. Binary search assumes the input list is already sorted. Assume it takes $\Theta(n^2)$ time to sort a list of length $n$. Suppose you know ahead of time that you will search the same list $k$ times. 
   + What is worst-case complexity of searching a list of $n$ elements $k$ times using linear search? **TODO: your answer goes here**
