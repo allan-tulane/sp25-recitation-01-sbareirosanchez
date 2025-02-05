@@ -71,6 +71,6 @@ Linear Search: Shows an increasing time compexity approximately proportional to 
 Binary Search: Grows much slower, confirming its O(log₂(n)) complexity.**
 
 - [ ] 10. Binary search assumes the input list is already sorted. Assume it takes $\Theta(n^2)$ time to sort a list of length $n$. Suppose you know ahead of time that you will search the same list $k$ times. 
-  + What is worst-case complexity of searching a list of $n$ elements $k$ times using linear search? **TODO: your answer goes here**
-  + For binary search? **TODO: your answer goes here**
-  + For what values of $k$ is it more efficient to first sort and then use binary search versus just using linear search without sorting? **TODO: your answer goes here**
+  + What is worst-case complexity of searching a list of $n$ elements $k$ times using linear search? **O(k*n) (each search takes 0(n), so searching k times takes k*O(n)).**
+  + For binary search? **Sorting takes O(n^2), and each search takes O(log n). Thus, O(n^2 +klogn).**
+  + For what values of $k$ is it more efficient to first sort and then use binary search versus just using linear search without sorting? **If k is large enough, the overhead of sorting is worth it, typically when k>((n^2)/logn)**
