@@ -7,9 +7,10 @@ import tabulate
 import time
 ###
 
+
 def linear_search(mylist, key):
 	""" done. """
-	for i,v in enumerate(mylist):
+	for i, v in enumerate(mylist):
 		if v == key:
 			return i
 	return -1
@@ -17,9 +18,19 @@ def linear_search(mylist, key):
 
 def binary_search(mylist, key):
 	""" done. """
-	return _binary_search(mylist, key, 0, len(mylist)-1)
+	return _binary_search(mylist, key, 0, len(mylist) - 1)
+
 
 def _binary_search(mylist, key, left, right):
+	if left > right:
+		return -1
+	mid = (left + right) // 2
+	if mylist[mid] == key:
+		return mid
+	elif mylist[mid] > key:
+		return _binary_search(mylist, key, left, mid - 1)
+	else:
+		return _binary_search(mylist, key, mid + 1, right)
 	"""
 	Recursive implementation of binary search.
 
@@ -37,9 +48,11 @@ def _binary_search(mylist, key, left, right):
 	###
 
 
-
-
 def time_search(search_fn, mylist, key):
+	start = time.time()
+	search_fn(mylist, key)
+	end = time.time()
+	return (end - start) * 1000
 	"""
 	Return the number of milliseconds to run this
 	search function on this list.
@@ -61,7 +74,16 @@ def time_search(search_fn, mylist, key):
 
 	###
 
+
 def compare_search(sizes=[1e1, 1e2, 1e3, 1e4, 1e5, 1e6, 1e7]):
+	results = []
+	for size in sizes:
+		mylist = list(range(int(size)))
+		key = -1
+		lin_time = time_search(linear_search, mylist, key)
+		bin_time = time_search(binary_search, mylist, key)
+		results.append((size, lin_time, bin_time))
+	return results
 	"""
 	Compare the running time of linear_search and binary_search
 	for input sizes as given. The key for each search should be
@@ -80,10 +102,15 @@ def compare_search(sizes=[1e1, 1e2, 1e3, 1e4, 1e5, 1e6, 1e7]):
 
 	###
 
+
 def print_results(results):
 	""" done """
-	print(tabulate.tabulate(results,
-							headers=['n', 'linear', 'binary'],
-							floatfmt=".3f",
-							tablefmt="github"))
+	print(
+	    tabulate.tabulate(results,
+	                      headers=['n', 'linear', 'binary'],
+	                      floatfmt=".3f",
+	                      tablefmt="github"))
 
+
+results = compare_search()
+print_results(results)
